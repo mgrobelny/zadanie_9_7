@@ -43,7 +43,7 @@ function setGameElements() {
         resultsElem.style.display = 'block';
       break;
     case 'ended':
-        newGameBtn.innerText = 'Jeszcze raz';
+        newGameBtn.innerText = 'Play again';
     case 'notStarted':
     default:
         newGameElem.style.display = 'block';
@@ -64,7 +64,7 @@ var playerPointsElem = document.getElementById('js-playerPoints'), // punktacja 
 // definicja funkcji, która będzie uruchamiona po wciśnięciu przycisku "New Game" / "Play Again"
 
 function newGame() {
-  player.name = prompt('Please enter your name', 'imię gracza');
+  player.name = prompt('Please enter your name', 'your name');
   if (player.name) {
     player.score = computer.score = 0;
     gameState = 'started';
@@ -94,6 +94,7 @@ function playerPick(playerPick) {
     playerPickElem.innerHTML = playerPick;
     computerPickElem.innerHTML = computerPick;
     checkRoundWinner(playerPick, computerPick);
+    checkGameWinner();
 }
 
 // umieszczenie wyboru gracza i komputera na stronie
@@ -111,7 +112,9 @@ function checkRoundWinner(playerPick, computerPick) {
   var winnerIs = 'player';
 
     if (playerPick == computerPick) {
-        winnerIs = 'noone'; // remis
+        winnerIs = 'both'; // remis
+        player.score++;
+        computer.score++;
     } else if (
         (computerPick == 'rock' &&  playerPick == 'scissors') ||
         (computerPick == 'scissors' &&  playerPick == 'paper') ||
@@ -128,6 +131,7 @@ function checkRoundWinner(playerPick, computerPick) {
         computer.score++;
     }
     setGamePoints();
+
 }
 
 function playerPick(playerPick) {
@@ -135,6 +139,7 @@ function playerPick(playerPick) {
     playerPickElem.innerHTML = playerPick;
     computerPickElem.innerHTML = computerPick;
     checkRoundWinner(playerPick, computerPick);
+    checkGameWinner();
 }
 
 // wyświetlanie wyniku
@@ -142,4 +147,19 @@ function playerPick(playerPick) {
 function setGamePoints() {
     playerPointsElem.innerHTML = player.score;
     computerPointsElem.innerHTML = computer.score;
+}
+
+// zakończenie gry w wyniku osiągnięcia 10 punktów
+
+function checkGameWinner () {
+    if(player.score == 10) {
+        alert('Congratulations, ' + player.name +'! You win!');
+        gameState = 'ended';
+        setGameElements();
+    }
+    if(computer.score == 10) {
+        alert('You lose!');
+        gameState = 'ended';
+        setGameElements();
+    }
 }
