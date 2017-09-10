@@ -113,8 +113,8 @@ function checkRoundWinner(playerPick, computerPick) {
 
     if (playerPick == computerPick) {
         winnerIs = 'both'; // remis
-        player.score++;
-        computer.score++;
+        player.score++; // dodana opcja +1 pkt. dla każdego w przypadku remisu
+        computer.score++; // jw.
     } else if (
         (computerPick == 'rock' &&  playerPick == 'scissors') ||
         (computerPick == 'scissors' &&  playerPick == 'paper') ||
