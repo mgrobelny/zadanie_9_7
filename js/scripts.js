@@ -131,15 +131,6 @@ function checkRoundWinner(playerPick, computerPick) {
         computer.score++;
     }
     setGamePoints();
-
-}
-
-function playerPick(playerPick) {
-    var computerPick = getComputerPick();
-    playerPickElem.innerHTML = playerPick;
-    computerPickElem.innerHTML = computerPick;
-    checkRoundWinner(playerPick, computerPick);
-    checkGameWinner();
 }
 
 // wyświetlanie wyniku
@@ -153,13 +144,13 @@ function setGamePoints() {
 
 function checkGameWinner () {
     if(player.score == 10) {
-        alert('Congratulations, ' + player.name +'! You win!');
         gameState = 'ended';
+        alert('Congratulations, ' + player.name +'! You win!');
         setGameElements();
     }
     if(computer.score == 10) {
-        alert('You lose!');
         gameState = 'ended';
+        alert('You lose!');
         setGameElements();
     }
 }
