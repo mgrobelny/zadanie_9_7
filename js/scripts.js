@@ -70,7 +70,7 @@ function newGame() {
     gameState = 'started';
     setGameElements();
 
-    playerNameElem.innerHTML = player.name;
+    playerNameElem.innerText = player.name;
     setGamePoints();
   }
 
@@ -91,8 +91,8 @@ function getComputerPick() {
 
 function playerPick(playerPick) {
     var computerPick = getComputerPick();
-    playerPickElem.innerHTML = playerPick;
-    computerPickElem.innerHTML = computerPick;
+    playerPickElem.innerText = playerPick;
+    computerPickElem.innerText = computerPick;
     checkRoundWinner(playerPick, computerPick);
     checkGameWinner();
 }
@@ -107,7 +107,7 @@ var playerPickElem = document.getElementById('js-playerPick'),
 // logika gry i przyznawanie punktów
 
 function checkRoundWinner(playerPick, computerPick) {
-  playerResultElem.innerHTML = computerResultElem.innerHTML = '';
+  playerResultElem.innerText = computerResultElem.innerText = '';
 
   var winnerIs = 'player';
 
@@ -124,10 +124,10 @@ function checkRoundWinner(playerPick, computerPick) {
     }
 
     if (winnerIs == 'player') {
-        playerResultElem.innerHTML = "Win!";
+        playerResultElem.innerText = "Win!";
         player.score++;
     } else if (winnerIs == 'computer') {
-        computerResultElem.innerHTML = "Win!";
+        computerResultElem.innerText = "Win!";
         computer.score++;
     }
     setGamePoints();
@@ -136,8 +136,8 @@ function checkRoundWinner(playerPick, computerPick) {
 // wyświetlanie wyniku
 
 function setGamePoints() {
-    playerPointsElem.innerHTML = player.score;
-    computerPointsElem.innerHTML = computer.score;
+    playerPointsElem.innerText = player.score;
+    computerPointsElem.innerText = computer.score;
 }
 
 // zakończenie gry w wyniku osiągnięcia 10 punktów
